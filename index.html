@@ -2,9 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script>
+        async function calculate_bmi() {
+            try {
+                const py = await pyodide.loadPython(["numpy as np"]);
+
+                // Get user input
+                const weight = parseFloat(document.getElementById("weight").value);
+                const height = parseFloat(document.getElementById("height").value);
+
+                // Calculate BMI using Pyodide
+                const bmi = py.runPython("weight / (height / 100) ** 2");
+
+                // Format and display results
+                document.getElementById("result").textContent = `Your BMI is: ${bmi.toFixed(1)}`;
+
+                const categories = {
+                    "Underweight": bmi <= 18.5,
+                    "Normal": bmi > 18.5 && bmi <= 24.9,
+                    "Overweight": bmi > 25 && bmi <= 29.9,
+                    "Obese": bmi > 30
+                };
+
+                let category;
+                for (const [key, value] of Object.entries(categories)) {
+                    if (value) {
+                        category = key;
+                        break;
+                    }
+                }
+                document.getElementById("category").textContent = `Category: ${category}`;
+            } catch (error) {
+                console.error(error);
+                document.getElementById("result").textContent = "Error: Invalid inputs";
+            }
+        }
+    </script>
 </head>
 <body>
-
+    <h1>BMI Calculator</h1>
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" required><br>
+    <label for="height">Height (cm):</label>
+    <input type="number" id="height" required><br>
+    <button onclick="calculate_bmi()">Calculate BMI</button>
+    <p id="result"></p>
+    <p id="category"></p>
 </body>
 </html>
