@@ -1,6 +1,7 @@
 # BMI Calculator
 
 This is a simple, open-source BMI (Body Mass Index) calculator project built using PyScript. This project is intended as a fun way to test and explore the capabilities of PyScript.
+https://tharakaumayanga.github.io/BMI-Calculator/
 
 ## Project Overview
 
