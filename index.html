@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI Calculator</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css"/>
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <!-- Add Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Add custom CSS -->
+    <style>
+        input[type="number"] {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+        }
+        label {
+            padding: 5px;
+            font-size: 18px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 <h1>BMI Calculator</h1>
@@ -13,7 +43,8 @@
 <input type="number" id="weight" required><br>
 <label for="height">Height (cm):</label>
 <input type="number" id="height" required><br>
-<button py-click="calculate_bmi">Calculate BMI</button>
+<br>
+<button py-click="calculate_bmi" class="btn btn-primary">Calculate BMI</button>
 <p id="result"></p>
 <p id="category"></p>
 
